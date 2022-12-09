@@ -20,6 +20,7 @@ import {Asset} from 'expo-asset';
 import {Platform} from 'react-native';
 
 import {fetch} from './platform_react_native';
+import {decode} from 'base64-arraybuffer';
 
 class BundleResourceHandler implements io.IOHandler {
   constructor(
@@ -122,7 +123,8 @@ class BundleResourceHandler implements io.IOHandler {
             }
           }
 
-          const weightData = util.encodeString(base64Weights, 'base64').buffer;
+          //const weightData = util.encodeString(base64Weights, 'base64').buffer;
+          const weightData = decode(base64Weights);
           return weightData;
         }));
 
